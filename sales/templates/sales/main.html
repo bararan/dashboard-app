@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sales Llist
+{% endblock title %}
+
+{% block content %}
+    Sales Llist</br>
+    {% for s in object_list %}
+    <div class="card mb-3">
+        <a href="{{s.get_absolute_url}}" class="card-body no-decoration">{{s.sale_id}}</a>
+        {% comment %}Use this line or the one above <a href={% url 'sales:details' s.pk %} class="card-body">{{s.sale_id}}</a> {% endcomment %}
+    </div>
+    {% endfor %}
+{% endblock content %}

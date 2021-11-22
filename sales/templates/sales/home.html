@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% block scripts %}
+        <script src="{% static 'sales/home.js' %}" defer></script>
+    {% endblock scripts %}
+    Home
+{% endblock title %}
+
+{% block content %}
+    {% if is_post and not sales_data %}
+        <div class="alert alert-warning" role="alert">
+            No Data for the selected dates!
+        </div>
+    {% endif %}
+    <!-- Modal -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="reportModalLabel">Add Report</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="report-modal">
+            <div id="result-box"></div>
+                {% comment %} <img src="data:image/png;base64, {{chart|safe}}" class="w-100" id="graph"> <!-- w-100 here scales the img to 100% width of parent element -->     {% endcomment %}
+                <form id="report-form">
+                    {% csrf_token %}
+                    {{report_form|crispy}}
+                    <button type="submit" class="btn btn-info mt-2">Save</button>
+                </form>
+        </div>
+        <!---div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div-->
+        </div>
+    </div>
+    </div>
+    <form action="" id="search-form" method="POST">
+        {% csrf_token %}
+        {{search_form|crispy}}
+        <button type="submit" class="btn btn-primary mt-3">Search</button>
+    </form>
+    <hr>
+    {% if sales_data %}
+    {% comment %} <h4>Sales</h4>
+        {{sales_data|safe}}
+    <br>
+        <h4>Positions</h4>
+        {{positions_data|safe}}
+    <br>
+        <h4>Merged</h4>
+        {{merged_data|safe}}
+    <br> {% endcomment %}
+        <h4>Aggregated</h4>
+        {{main_data|safe}}
+    <br>
+        <img src="data:image/png;base64, {{chart|safe}}" class="w-100" id='img'>
+        {% comment %} <br>
+        <button class="btn btn-success">Generate Report</button> {% endcomment %}
+    {% endif %}
+    <br>
+    <button class="btn btn-primary not-visible" id="report-btn" data-bs-toggle="modal" data-bs-target="#reportModal">Generate Report</button>
+{% endblock content %}

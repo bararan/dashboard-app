@@ -1,0 +1,7 @@
+.vscode
+.env
+db.sqlite3
+media/*/*
+migrations/
+__pycache__/
+.cache_ggshield

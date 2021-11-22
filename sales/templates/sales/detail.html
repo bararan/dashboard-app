@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Sale Details for {{object.sale_id}}
+{% endblock title %}
+
+{% block content %}
+    <div class="row mt-3 mb-3">
+        <div class="col-3">
+            <img src={{object.customer.logo.url}} class="img-fluid" alt={{object.customer.name}}>
+        </div>
+        <div class="col-9">
+            <ul>
+                <li>Sale id: <b>{{object.sale_id}}</b>
+                <li>Salesman: <b>{{object.seller.user.username}}</b>
+            </ul>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Sale Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for pos in object.get_positions %}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{pos.product.name}}</td>
+        <td>{{pos.quantity}}</td>
+        <td>{{pos.price}}</td>
+        <td>{{pos.created}}</td>
+    </tr>
+  {% endfor %}
+    
+  </tbody>
+</table>
+    {% for p in object_list %}
+
+    {% endfor %}
+    <hr>
+    <a href='/sales'>Back to Sales List</a>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Report List
+{% endblock title %}
+
+{% block content %}
+    <h3>Report Llist</h3>
+    <hr>
+    {% for r in object_list %}
+    <a href="{{r.get_absolute_url}}" class="card mb-3 no-decoration">
+        <div class="card-body">
+            <h5 class="card-title">{{r.name}}</h5>
+            <p class="card-text grey-text">{{ r.remarks|truncatewords:2 }}</p>
+            {% comment %}Use this line or the one above <a href={% url 'sales:details' s.pk %} class="card-body">{{s.sale_id}}</a> {% endcomment %}
+        </div>
+    </a>
+    {% endfor %}
+{% endblock content %}

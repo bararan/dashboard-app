@@ -1,0 +1,39 @@
+.not-visible {
+    display: none;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+
+.grey-text {
+    color: grey;
+}
+
+.dz {
+    border-radius: 5px;
+    border-style: dashed;
+    border-color: lightseagreen;
+    transition: .5s;
+}
+
+.dz:hover {
+    background-color: lightcyan;
+}
+
+.avatar-sm {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.avatar-big {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.log-sm {
+    height: 30px;
+    width: auto;
+}

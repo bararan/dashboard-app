@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{object.name}}
+{% endblock title %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2>{{object.name}}</h2>
+            <br>
+            <image src={{object.image.url}} class="img-fluid"></image><br>
+            <h4>Remarks</h4>
+            <p>{{object.remarks}}</p>
+            <hr>
+            <p><b>author:</b> {{ object.author.user.username }}</p>
+            <p><b>created:</b> {{ object.created }}</p>
+            <a href="/reports" class="btn btn-primary">Back to List</a>
+            <a href="{% url 'reports:pdf' object.pk %}" class="btn btn-info">Save as PDF</a>
+        </div>       
+    </div>
+{% endblock content %}
